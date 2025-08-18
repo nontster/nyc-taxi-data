@@ -15,7 +15,7 @@ The TLC changed the raw data format from CSV to Apache Parquet in May 2022, incl
 
 As part of the May 2022 update, the TLC added several new columns to the High Volume For-Hire Vehicle (Uber, Lyft) trip files, including information about passenger fares, driver pay, and time spent waiting for passengers. These new fields are available back to February 2019.
 
-This repo no longer works with the old CSV files provided by the TLC. Those files are no longer available to download from the TLC's website, but if you happen to have them lying around and want to use this repo, you should look at [this older verion of the code](https://github.com/toddwschneider/nyc-taxi-data/tree/2e805ab0f1bf362f890c6b6f227526c575f73b67) from before the Parquet file format change.
+This repo no longer works with the old CSV files provided by the TLC. Those files are no longer available to download from the TLC's website, but if you happen to have them lying around and want to use this repo, you should look at [this older version of the code](https://github.com/toddwschneider/nyc-taxi-data/tree/2e805ab0f1bf362f890c6b6f227526c575f73b67) from before the Parquet file format change.
 
 ## ClickHouse Instructions
 
