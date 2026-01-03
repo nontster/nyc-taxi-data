@@ -21,7 +21,65 @@ This repo no longer works with the old CSV files provided by the TLC. Those file
 
 See the [`clickhouse`](https://github.com/toddwschneider/nyc-taxi-data/tree/master/clickhouse) directory
 
-## PostgreSQL Instructions
+## Docker Instructions (Recommended)
+
+The easiest way to run this project is using Docker. No need to install PostgreSQL, PostGIS, R, or Python locally.
+
+##### 1. Prerequisites
+
+- [Docker](https://docs.docker.com/get-docker/) and Docker Compose
+
+##### 2. Download raw data (2025 only)
+
+```bash
+./download_raw_data_2025.sh
+```
+
+Or download all historical data:
+
+```bash
+./download_raw_data.sh
+```
+
+##### 3. Start PostgreSQL container
+
+```bash
+cp .env.example .env  # Optional: customize settings
+docker compose up -d
+```
+
+##### 4. Initialize database
+
+```bash
+./initialize_database_docker.sh
+```
+
+##### 5. Import data
+
+For 2025 data only:
+
+```bash
+./import_2025_data.sh
+```
+
+Or import by type:
+
+```bash
+./import_yellow_taxi_trip_data_docker.sh
+./import_green_taxi_trip_data_docker.sh
+./import_fhv_trip_data_docker.sh
+./import_fhvhv_trip_data_docker.sh
+```
+
+##### 6. Connect to database
+
+```bash
+docker exec -it nyc-taxi-postgres psql -U postgres -d nyc-taxi-data
+```
+
+---
+
+## PostgreSQL Instructions (Local Installation)
 
 ##### 1. Install [PostgreSQL](https://www.postgresql.org/download/) and [PostGIS](https://postgis.net/install)
 
