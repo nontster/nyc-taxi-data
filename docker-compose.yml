@@ -1,5 +1,6 @@
 services:
   postgres:
+    platform: linux/arm64
     build:
       context: .
       dockerfile: Dockerfile

@@ -21,7 +21,8 @@ CREATE TABLE green_tripdata_staging (
   total_amount numeric,
   payment_type integer,
   trip_type integer,
-  pickup_location_id integer
+  pickup_location_id integer,
+  cbd_congestion_fee numeric
 )
 WITH (
   autovacuum_enabled = false,
@@ -52,7 +53,8 @@ CREATE TABLE yellow_tripdata_staging (
   improvement_surcharge numeric,
   total_amount numeric,
   congestion_surcharge numeric,
-  airport_fee numeric
+  airport_fee numeric,
+  cbd_congestion_fee numeric
 )
 WITH (
   autovacuum_enabled = false,
@@ -81,7 +83,7 @@ CREATE TABLE fhv_trips_staging (
   trip_time numeric,
   base_passenger_fare numeric,
   tolls numeric,
-  black_car_fund numeric,
+  bcf numeric,
   sales_tax numeric,
   congestion_surcharge numeric,
   airport_fee numeric,
@@ -92,9 +94,9 @@ CREATE TABLE fhv_trips_staging (
   access_a_ride_flag text,
   wav_request_flag text,
   wav_match_flag text,
-  shared_ride_flag text,
-  affiliated_base_num text,
-  legacy_shared_ride_flag text
+  cbd_congestion_fee numeric,
+  sr_flag text,
+  affiliated_base_num text
 )
 WITH (
   autovacuum_enabled = false,
