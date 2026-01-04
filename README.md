@@ -77,6 +77,43 @@ Or import by type:
 docker exec -it nyc-taxi-postgres psql -U postgres -d nyc-taxi-data
 ```
 
+##### 7. Verify data import
+
+Count records in all tables:
+
+```bash
+docker exec nyc-taxi-postgres psql -U postgres -d nyc-taxi-data -c "
+SELECT 'trips' as table_name, COUNT(*) as count FROM trips
+UNION ALL SELECT 'fhv_trips', COUNT(*) FROM fhv_trips
+UNION ALL SELECT 'yellow_staging', COUNT(*) FROM yellow_tripdata_staging
+UNION ALL SELECT 'green_staging', COUNT(*) FROM green_tripdata_staging
+UNION ALL SELECT 'fhv_staging', COUNT(*) FROM fhv_trips_staging
+ORDER BY table_name;"
+```
+
+View sample Yellow/Green taxi data:
+
+```bash
+docker exec nyc-taxi-postgres psql -U postgres -d nyc-taxi-data -c "SELECT * FROM trips LIMIT 5;"
+```
+
+View sample FHV/FHVHV data:
+
+```bash
+docker exec nyc-taxi-postgres psql -U postgres -d nyc-taxi-data -c "SELECT * FROM fhv_trips LIMIT 5;"
+```
+
+Count trips by date (2025):
+
+```bash
+docker exec nyc-taxi-postgres psql -U postgres -d nyc-taxi-data -c "
+SELECT DATE(pickup_datetime) as date, COUNT(*) as trips
+FROM trips
+WHERE pickup_datetime >= '2025-01-01'
+GROUP BY DATE(pickup_datetime)
+ORDER BY date;"
+```
+
 ---
 
 ## PostgreSQL Instructions (Local Installation)
